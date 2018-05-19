@@ -1,0 +1,33 @@
+Q. How did viewing a diff between two versions of a file help you see the bug that was introduced?
+A. Let's see.
+
+Q. What do you think are the pros and cons of manually choosing when to create a commit, like you do in Git, vs having versions automatically saved, like Google Docs does?
+
+A. Manual Commit:
+	Pros:
+		1. Commits are more sensible as it is done by developer so he can understand the context as he provides message with git.
+		2. He can do one commit per logical change which makes seeing history easy.
+
+	Cons:
+		1. Developer can sometimes do too short and frequent commits.
+		2. He can also sometimes do too big commits which will become ambiguos while seeing history.
+
+   Automatic commit by Google Docs:
+   	Pros:
+   		1. Developer does not have to think about commiting everytime he makes any changes.
+   	Cons:
+   		1. As commit is not done by developer he may get confused when seeing history as there will be no proper commit message
+   		2. One commit per logic will not be done which will make history ambiguos.
+
+Q. How can you use the commands git log and git diff to view the history of files?
+A. Command:
+		git log                        # it gives list of all recent commits with commit ID, date, author and commit message
+		git log --stat                 # it gives same log result with statistics like file names where change happened
+		git diff commitID1 commitID2   # it gives difference between two commits with all file names where change happened
+
+Q. How is the staging area different from the working directory and the repository? 
+A. Working directory: the Project directory(outermost directory) containing all files
+   Repository:        the collection of commited files
+   Staging area:      intermediate directory which contains files which will be commited to repository (Files in working directory 						which are not added to staging area will not be commited).
+
+Q.
