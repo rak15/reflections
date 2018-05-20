@@ -14,3 +14,6 @@ git reset <filename>				# remove file from staging area before commiting
 		OR
 git rm --cached <filename>
 
+git commit -m "commit message"		# commit the added files in staging area to repository (-m for message with "commit message")
+git commit 							# if you have set core editor then that editor(sublime text) will open to write commit message
+
