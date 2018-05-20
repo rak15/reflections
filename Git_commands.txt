@@ -6,7 +6,7 @@ git diff <commitID1> <commitID2>   	# it gives difference between two commits wi
 
 git init							# it creates the .git directory (repository) inside your working project directory (existing 										files are not be added automatically in repository)
 
-git status							# it gives the status of your repository (untracked files: files present in working directory 										but not added to staging area; Changes to be commited: files added in staging area but not yet 										commited)
+git status							# it gives the status of your repository (untracked files: files present in working directory 										but not added to staging area; Changes to be commited: files added in staging area but not yet 										commited; Lists all new or modified files to be commited)
 
 git add <filename>					# add file to staging area (While commiting, every file in staging area will be commited to 										repository)
 
@@ -17,3 +17,5 @@ git rm --cached <filename>
 git commit -m "commit message"		# commit the added files in staging area to repository (-m for message with "commit message")
 git commit 							# if you have set core editor then that editor(sublime text) will open to write commit message
 
+git diff 							# shows differences between files in working directory and staging area
+git diff --staged 					# shows differences between files in staging area and last commit
