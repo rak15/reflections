@@ -10,12 +10,21 @@ git status							# it gives the status of your repository (untracked files: file
 
 git add <filename>					# add file to staging area (While commiting, every file in staging area will be commited to 										repository)
 
+git add -u 							# (add updated) Tracked modified/deleted files to staging area before commit
+git add . 							# (add new) Untracked files to staging area
+git add -A 							# (add all) the files(tracked and untracked) in working directory to staging area
+									it is a combination of: git add -u AND git add .
+
 git reset <filename>				# remove file from staging area before commiting
 		OR
 git rm --cached <filename>
 
 git commit -m "commit message"		# commit the added files in staging area to repository (-m for message with "commit message")
 git commit 							# if you have set core editor then that editor(sublime text) will open to write commit message
+git commit -a 						# (commit all) this is combination of: git add -u AND git commit    
 
 git diff 							# shows differences between files in working directory and staging area
 git diff --staged 					# shows differences between files in staging area and last commit
+
+git reset --hard 					# discards any changes in files in working directory or staging area (Use with Caution as this  									 is irreversible)
+
