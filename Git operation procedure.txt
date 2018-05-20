@@ -1,0 +1,20 @@
+1. Always code in your personal branch.
+2. Each developer will commit and push only in their branch and development branch
+3. Before checking any other branch 1st commit and push the current branch.
+
+
+
+                                     First thing in office
+
+1. Update project so that development branch will be updated
+2. Compare development branch to your personal branch
+3. If they differ then merge development branch to your personal branch then push it and start coding.
+
+
+
+                                     Last thing in office
+
+1. Commit and push your personal branch
+2. Update project so that development branch will be updated
+3. Merge your personal branch to development branch and push it.
+4. Again merge development branch to your personal branch and push it.
