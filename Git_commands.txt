@@ -4,6 +4,8 @@ git log                   	   		# it gives list of all recent commits with commi
 git log --stat                 		# it gives same log result with statistics like file names where change happened
 git diff <commitID1> <commitID2>   	# it gives difference between two commits with all file names where change happened (1st commit 									should be older than the 2nd commit)
 
+git show <commitID> 				# it gives difference between specified commit and its parent commit(commit before this commit)
+
 git init							# it creates the .git directory (repository) inside your working project directory (existing 										files are not be added automatically in repository)
 
 git status							# it gives the status of your repository (untracked files: files present in working directory 										but not added to staging area; Changes to be commited: files added in staging area but not yet 										commited; Lists all new or modified files to be commited)
@@ -28,3 +30,16 @@ git diff --staged 					# shows differences between files in staging area and las
 
 git reset --hard 					# discards any changes in files in working directory or staging area (Use with Caution as this  									 is irreversible)
 
+git branch 							# shows the list of branches and highlight the current checked out(used) branch with a *(star)
+git branch <branchName> 			# create a new branch with specified branchName (it will copy all commits till now) to new branch
+git checkout <branchName> 			# checkout (use) specified branchName
+git checkout -b <branchName> 		# creates and checkout specified new branchName. it's combination of: git branch <branchName>										AND git checkout <branchName>
+
+git branch -d <branchName> 			# delete specified branch
+
+git log --graph --oneline branch1 branch2  		#creates a commit graph of branch1 and branch2
+
+git merge <branch1> <branch2> 		# merging both branches. If branch1 is checked out while merging then branch1 will have new 				OR						merge commit otherwise branch2.
+git merge <branch2> 				# branch2 will merge in to current checked out branch from where merging started
+
+git remote 							# show current remote(remote server) if exists (Eg: origin)
