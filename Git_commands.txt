@@ -43,8 +43,25 @@ git merge <branch1> <branch2> 		# merging both branches. If branch1 is checked o
 git merge <branch2> 				# branch2 will merge in to current checked out branch from where merging started
 
 git remote 							# show current remote(remote server) if exists (Eg: origin)
-git remote -v 						# show remote with more data like repository URL
+git remote -v 						# show remote with more data like repository URL (-v for verbose)
 git remote add origin <repository URL on Github> 		# add remote (named "origin") with Url of created empty repository on Github
 
-git push -u <remote> <branch> 		# push commits to remote-branch (Eg: git push -u origin master) (-u means upstream)
+git push -u <remote> <branch> 		# push commits to remote-branch (Eg: git push -u origin master) (-u means add upstream 												(tracking) reference, used by argument-less git-pull)
+			OR
+git push <remote> <branch> 			# will push on specified branch
+
+git push 							# will push all branches
+
+git fetch 							# it downloads new commits from server into local copy of origin/branch but will not merge to 										local branch
+git pull 							# It is combination of: git fetch AND git merge origin/current-branch
+	OR
+git pull origin 					
+
+git pull --no-commit origin 		# it will only fetch files but not automatically commit
+git pull --rebase 					# it will rebase instead of merging after fetching files
+
+git clone <repository URL on Github>	 # it will create a local repository(clone) of the remote repository
+											(CAUTION: move to a new specific directory where you want the new ropository before cloning otherwise if you are already in a different repository's working directory then cloning will download new repository folder in the same current working directory)
+
+
 

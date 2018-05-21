@@ -1,0 +1,8 @@
+When would you want to create remote repository rather than keeping all files in local machine?
+--By create remote repository we or any person can access that repository from anywhere as remote repository will be on a server and not on a local machine.
+
+**Fork**
+--It is same as cloning repository but this cloning works only inside github from one github account to another github account. By doing so person other than original auther can add new feature or modify code in that separate repository.
+
+What is the benefit of having a copy of the last known state of the remote stored locally?
+--You can download copy of remote repository when you have internet and compare that copy with your local repository when you don't have internet.
