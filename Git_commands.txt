@@ -43,3 +43,8 @@ git merge <branch1> <branch2> 		# merging both branches. If branch1 is checked o
 git merge <branch2> 				# branch2 will merge in to current checked out branch from where merging started
 
 git remote 							# show current remote(remote server) if exists (Eg: origin)
+git remote -v 						# show remote with more data like repository URL
+git remote add origin <repository URL on Github> 		# add remote (named "origin") with Url of created empty repository on Github
+
+git push -u <remote> <branch> 		# push commits to remote-branch (Eg: git push -u origin master) (-u means upstream)
+
