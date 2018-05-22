@@ -1,8 +1,22 @@
 When would you want to create remote repository rather than keeping all files in local machine?
 --By create remote repository we or any person can access that repository from anywhere as remote repository will be on a server and not on a local machine.
 
+
 **Fork**
 --It is same as cloning repository but this cloning works only inside github from one github account to another github account. By doing so person other than original auther can add new feature or modify code in that separate repository.
 
+
 What is the benefit of having a copy of the last known state of the remote stored locally?
 --You can download copy of remote repository when you have internet and compare that copy with your local repository when you don't have internet.
+
+
+When would you want to make changes in a separate branch rather than directly in master?
+--Any cases from the following:
+	When you are going to add some new feature 
+	fixing a bug
+	writing test cases
+	Not want to make changes in master branch etc.
+
+
+Caution before merging branches:
+--You just saw that the workflow when making changes in a separate branch is more complicated than working directly in master, especially when you need to stay up-to-date with changes others are making. Rather than simply pulling and pushing, you need to pull changes into your local master branch, merge the local master into your branch (different-oil, in our case), then push your branch to the remote before finally merging your branch into master, either locally or on GitHub.

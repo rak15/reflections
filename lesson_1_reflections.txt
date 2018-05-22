@@ -30,4 +30,10 @@ A. Working directory: the Project directory(outermost directory) containing all 
    Repository:        the collection of commited files
    Staging area:      intermediate directory which contains files which will be commited to repository (Files in working directory 						which are not added to staging area will not be commited).
 
-Q.
+Q. What is .gitignore file?
+A. .gitignore is a text file which contains the names of files which should be ignored while commiting. (Some files in a project 		directory are not important for repository so you can ignore them while commiting).
+	* .gitignore resides in root working directory.
+	Note: Only non-tracked(unstaged) files can be ignored from commiting. If you want to ignore staged file then first unstage that file and add that file's name in .gitignore file.
+
+Q. What is stash?
+A. If you want to save local uncommited changes (if you don't want to commit yet) before pulling, merging or checking out another branch then you can stash the changes(store the changes somewhere else temporarily) and later you can get back those chnges from stash and continue working.
