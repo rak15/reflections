@@ -20,3 +20,8 @@ When would you want to make changes in a separate branch rather than directly in
 
 Caution before merging branches:
 --You just saw that the workflow when making changes in a separate branch is more complicated than working directly in master, especially when you need to stay up-to-date with changes others are making. Rather than simply pulling and pushing, you need to pull changes into your local master branch, merge the local master into your branch (different-oil, in our case), then push your branch to the remote before finally merging your branch into master, either locally or on GitHub.
+
+
+HTTPS vs SSH (Which one to use?):
+--If you use HTTPS url then everytime you want to push something to remote then you have to give your username and password
+  But if you use SSH then you create a ssh private and public key and add that public key to github account. Now when you do push to remote then you encrypt your data with your private key and github use your public key to decrypt that data. In this case if github can decrypt your data then it will know that it's you and you don't have to give username and password everytime you push.
