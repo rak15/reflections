@@ -1,14 +1,17 @@
-
-
-git log                   	   		# it gives list of all recent commits with commit ID, date, author and commit message
-git log --stat                 		# it gives same log result with statistics like file names where change happened
-git diff <commitID1> <commitID2>   	# it gives difference between two commits with all file names where change happened (1st commit 									should be older than the 2nd commit)
-
-git show <commitID> 				# it gives difference between specified commit and its parent commit(commit before this commit)
+----------------------------------------------------------General----------------------------------------------------------
 
 git init							# it creates the .git directory (repository) inside your working project directory (existing 										files are not be added automatically in repository)
 
+git clone <repository URL on Github>	# it will create a local repository(clone) of the remote repository
+										(CAUTION: move to a new specific directory where you want the new ropository before cloning otherwise if you are already in a different repository's working directory then cloning will download new repository folder in the same current working directory)
+
+git log                   	   		# it gives list of all recent commits with commit ID, date, author and commit message
+git log --stat                 		# it gives same log result with statistics like file names where change happened
+
+git log --graph --oneline branch1 branch2  		#creates a commit graph of branch1 and branch2
+
 git status							# it gives the status of your repository (untracked files: files present in working directory 										but not added to staging area; Changes to be commited: files added in staging area but not yet 										commited; Lists all new or modified files to be commited)
+----------------------------------------------------------Add--------------------------------------------------------------
 
 git add <filename>					# add file to staging area (While commiting, every file in staging area will be commited to 										repository)
 
@@ -16,54 +19,75 @@ git add -u 							# (add updated) Tracked modified/deleted files to staging area
 git add . 							# (add new) Untracked files to staging area
 git add -A 							# (add all) the files(tracked and untracked) in working directory to staging area
 									it is a combination of: git add -u AND git add .
+---------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------Revert Back------------------------------------------------------
 
 git reset <filename>				# remove file from staging area before commiting
 		OR
 git rm --cached <filename>
 
-git commit -m "commit message"		# commit the added files in staging area to repository (-m for message with "commit message")
-git commit 							# if you have set core editor then that editor(sublime text) will open to write commit message
-git commit -a 						# (commit all) this is combination of: git add -u AND git commit    
+git reset --hard 					# discards any changes in files in working directory, staging area and repository(commit) (Use 										with Caution as this is irreversible)
+
+git reset --soft HEAD^ 				# undo last commit from repository (if head is at last commit) but files will still be there in 									working directory and staging area
+git reset --mixed 
+---------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------Differences------------------------------------------------------
 
 git diff 							# shows differences between files in working directory and staging area
 git diff --staged 					# shows differences between files in staging area and last commit
+git diff HEAD 						# shows differences between working directory and last commit
+git diff <branch1> <branch2>		# shows differences between branch1 AND branch2
+git diff <commitID1> <commitID2>   	# it gives difference between two commits with all file names where change happened (1st commit 									should be older than the 2nd commit)
 
-git reset --hard 					# discards any changes in files in working directory, staging area and repository(commit) (Use 										with Caution as this is irreversible)
+git show <commitID> 				# it gives difference between specified commit and its parent commit(commit before this commit)
+---------------------------------------------------------------------------------------------------------------------------
 
-git reset --soft HEAD^ 				# undo last commit from repository (if head is at last commit) but files will still be there in  									 working directory and staging area
-git reset --mixed 
+----------------------------------------------------------Branch-----------------------------------------------------------
 
 git branch 							# shows the list of branches and highlight the current checked out(used) branch with a *(star)
 git branch -r 						# shows local copy of remote branches
-git branch <branchName> 			# create a new branch with specified branchName (it will copy all commits till now) to new branch
-git checkout <branchName> 			# checkout (use) specified branchName
+git branch <branchName> 			# create a new branch with specified branchName (it will copy all commits till now) to new 											branch
+git checkout <branchName> 			# checkout (use) specified branchName (and if specified branch is not created before but local 										copy of remote/branch is there then it will checkout remote/branch as new local branch)
+
 git checkout -b <branchName> 		# creates and checkout specified new branchName. it's combination of: git branch <branchName>										AND git checkout <branchName>
 
 git branch -d <branchName> 			# delete specified branch
+---------------------------------------------------------------------------------------------------------------------------
 
-git log --graph --oneline branch1 branch2  		#creates a commit graph of branch1 and branch2
-
-git merge <branch1> <branch2> 		# merging branch1, branch2 into current checked out branch. If branch1 is checked out while 										merging then branch1 will have new merge commit.
-		OR
-git merge <branch2> 				# branch2 will merge in to current checked out branch from where merging started
-git merge origin/master 			# merging local copy of remote master into local master branch (if master is checked out)
+----------------------------------------------------------Remote------------------------------------------------------------
 
 git remote 							# show current remote(remote server) if exists (Eg: origin)
 git remote -v 						# show remote with more data like repository URL (-v for verbose)
 git remote add origin <repository URL on Github> 		# add remote (named "origin") with Url of created empty repository on Github
+---------------------------------------------------------------------------------------------------------------------------
 
-git push -u <remote> <branch> 		# push commits to remote-branch (Eg: git push -u origin master) (-u means add upstream 												(tracking) reference, used by argument-less git-pull)
-			OR
-git push <remote> <branch> 			# will push on specified branch
-
-git push 							# will push all branches
+----------------------------------------------------------Fetch------------------------------------------------------------
 
 								***(Use fetch to learn about new changes in remote repo without merging into local repo)***
 git fetch 							# it downloads new commits from server into local copy of origin/branch but will not merge to 										local branch (it will also download local copy of new branches if created in remote)
 git fetch <remote> 					# fetches all branch(new or old) into local copy of remote repository
 git fetch <remote> <branch> 		# fetches only specified branch from remote
 git fetch --all 					# fetches all registered remotes and their branches
+---------------------------------------------------------------------------------------------------------------------------
 
+----------------------------------------------------------Merge------------------------------------------------------------
+
+git merge <branch1> <branch2> 		# merging branch1, branch2 into current checked out branch. If branch1 is checked out while 										merging then branch1 will have new merge commit.
+		OR
+git merge <branch2> 				# branch2 will merge in to current checked out branch from where merging started
+git merge origin/master 			# merging local copy of remote master into local master branch (if master is checked out)
+---------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------Commit-----------------------------------------------------------
+
+git commit -m "commit message"		# commit the added files in staging area to repository (-m for message with "commit message")
+git commit 							# if you have set core editor then that editor(sublime text) will open to write commit message
+git commit -a 						# (commit all) this is combination of: git add -u AND git commit    
+git commit --amend					#  Passing this option will modify the last commit. Instead of creating a new commit, staged 										changes will be added to the previous commit. This command will open up the system's configured 									text editor and prompt to change the previously specified commit message.
+---------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------Pull-------------------------------------------------------------
 
 git pull 							# It is combination of: git fetch AND git merge origin/current-branch
 	OR
@@ -72,8 +96,30 @@ git pull origin
 git pull --no-commit origin 		# it will only fetch files but not automatically commit
 git pull --rebase 					# it will rebase instead of merging after fetching files
 
-git clone <repository URL on Github>	 # it will create a local repository(clone) of the remote repository
-											(CAUTION: move to a new specific directory where you want the new ropository before cloning otherwise if you are already in a different repository's working directory then cloning will download new repository folder in the same current working directory)
+---------------------------------------------------------------------------------------------------------------------------
 
+----------------------------------------------------------Push-------------------------------------------------------------
 
+git push -u <remote> <branch> 		# push commits to remote-branch (Eg: git push -u origin master) (-u means add upstream 												(tracking) reference, used by argument-less git-pull)
+			OR
+git push <remote> <branch> 			# will push on specified branch
 
+git push 							# will push all branches
+---------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------Stash------------------------------------------------------------
+
+git stash							# stash your uncommited changes in tracked(staged or unstaged) files
+git stash -u 						# stash tracked and untracked file's changes (-u means: include-untracked)
+git stash -a 						# stash all files: tracked, untracked and ignored
+git stash save "your message" 		# stash your changes with a message (just like commit message)
+git stash list 						# list all stashes with branch name and message (if message is provided)
+git stash apply 					# reapply the most-recent stash on the checked out branch
+git stash apply stash@{2} 			# reapply the specified stash on the cheked out branch (stash@{2} is stash identifier example)
+git stash pop 						# reapply the most-recent stash on the checked out branch AND drop that stash from stack
+git stash pop stash@{2}  			# reapply the specified stash on the checked out branch AND drop that stash from stack
+git stash clear 					# drop the whole stack of saved stash
+git stash drop stash@{2} 			# drop the specified stash from stack
+
+git stash branch <newBranchName> stash@{1}  	#This checks out a new branch based on the commit that you created your stash from 													and then pops your stashed changes onto it
+---------------------------------------------------------------------------------------------------------------------------
