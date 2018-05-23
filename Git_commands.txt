@@ -28,7 +28,10 @@ git commit -a 						# (commit all) this is combination of: git add -u AND git co
 git diff 							# shows differences between files in working directory and staging area
 git diff --staged 					# shows differences between files in staging area and last commit
 
-git reset --hard 					# discards any changes in files in working directory or staging area (Use with Caution as this  									 is irreversible)
+git reset --hard 					# discards any changes in files in working directory, staging area and repository(commit) (Use 										with Caution as this is irreversible)
+
+git reset --soft HEAD^ 				# undo last commit from repository (if head is at last commit) but files will still be there in  									 working directory and staging area
+git reset --mixed 
 
 git branch 							# shows the list of branches and highlight the current checked out(used) branch with a *(star)
 git branch <branchName> 			# create a new branch with specified branchName (it will copy all commits till now) to new branch
