@@ -34,6 +34,7 @@ git reset --soft HEAD^ 				# undo last commit from repository (if head is at las
 git reset --mixed 
 
 git branch 							# shows the list of branches and highlight the current checked out(used) branch with a *(star)
+git branch -r 						# shows local copy of remote branches
 git branch <branchName> 			# create a new branch with specified branchName (it will copy all commits till now) to new branch
 git checkout <branchName> 			# checkout (use) specified branchName
 git checkout -b <branchName> 		# creates and checkout specified new branchName. it's combination of: git branch <branchName>										AND git checkout <branchName>
@@ -42,8 +43,10 @@ git branch -d <branchName> 			# delete specified branch
 
 git log --graph --oneline branch1 branch2  		#creates a commit graph of branch1 and branch2
 
-git merge <branch1> <branch2> 		# merging both branches. If branch1 is checked out while merging then branch1 will have new 				OR						merge commit otherwise branch2.
+git merge <branch1> <branch2> 		# merging branch1, branch2 into current checked out branch. If branch1 is checked out while 										merging then branch1 will have new merge commit.
+		OR
 git merge <branch2> 				# branch2 will merge in to current checked out branch from where merging started
+git merge origin/master 			# merging local copy of remote master into local master branch (if master is checked out)
 
 git remote 							# show current remote(remote server) if exists (Eg: origin)
 git remote -v 						# show remote with more data like repository URL (-v for verbose)
@@ -55,7 +58,13 @@ git push <remote> <branch> 			# will push on specified branch
 
 git push 							# will push all branches
 
-git fetch 							# it downloads new commits from server into local copy of origin/branch but will not merge to 										local branch
+								***(Use fetch to learn about new changes in remote repo without merging into local repo)***
+git fetch 							# it downloads new commits from server into local copy of origin/branch but will not merge to 										local branch (it will also download local copy of new branches if created in remote)
+git fetch <remote> 					# fetches all branch(new or old) into local copy of remote repository
+git fetch <remote> <branch> 		# fetches only specified branch from remote
+git fetch --all 					# fetches all registered remotes and their branches
+
+
 git pull 							# It is combination of: git fetch AND git merge origin/current-branch
 	OR
 git pull origin 					
