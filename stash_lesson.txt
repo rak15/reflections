@@ -54,3 +54,5 @@ To delete whole stash list : "git stash clear"
 
 								"git stash branch <newBranchName> stash@{1}"
 								--This checks out a new branch based on the commit that you created your stash from, and then pops your stashed changes onto it
+
+								
