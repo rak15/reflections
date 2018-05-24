@@ -38,11 +38,12 @@ git reset HEAD~2 					# reset with no option is --mixed by default
 
 git reset --hard <commitID>			# delete commits until specified commit(specified commit won't be deleted) from repository, 										staging area and working directory (Use with Caution as this is irreversible)
 
-git reset <filename>				# remove specified file from last commit, staging area but not from working directory
-		OR 							(it will remove file from last unpushed commit)
-git reset HEAD <filename>
-		OR
-git rm --cached <filename> 			
+git reset <filename>				# changes made in specified file(tracked) will be unstaged
+		OR 							
+git reset HEAD <filename> 			# changes made in specified file(tracked) will be unstaged
+		
+		
+git rm --cached <filename> 			# delete(untrack) specified file(tracked) in next commit (--cached will keep file in working 										directory)
 
 git checkout HEAD~2 <filename> 		# it will update the specified file's content as it was in 3rd last commit. (it works only at 										working directory level)
 ---------------------------------------------------------------------------------------------------------------------------
