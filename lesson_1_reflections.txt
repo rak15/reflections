@@ -37,3 +37,47 @@ A. .gitignore is a text file which contains the names of files which should be i
 
 Q. What is stash?
 A. If you want to save local uncommited changes (if you don't want to commit yet) before pulling, merging or checking out another branch then you can stash the changes(store the changes somewhere else temporarily) and later you can get back those chnges from stash and continue working.
+
+Q. What is tag?
+A.  Tags are references that point to specific points in Git history(commits). Tagging is generally used to capture a point in history that is used for a marked version release (i.e. v1.0.1). A tag is like a branch that doesn’t change. Unlike branches, tags, after being created, have no further history of commits. 
+
+	There are 2 types of tags:
+
+	1. Lightweight: Lightweight tags are essentially 'bookmarks' to a commit, they are just a name and a pointer to a commit, useful 				 for creating quick links to relevant commits. These are used as private tags.
+
+	2. Anotated: 	Anotated tags are also like lightweight tags but with extra metadata like: Tagger name, email and date.
+					It has tagging message just like commit message. Additionally, for security, annotated tags can be signed and verified with GNU Privacy Guard (GPG). These are used as public tags as anyone can know about this tag by help of metadata that it contains with it.
+
+Q. How to make change in old commits?
+A. You can checkout any old commit and after checking out you can do some changes. These changes will not affect that commit so if 		you want to save your new want to save those chnages then commit and create a new branch from that state and checkout new branch.
+
+Q. What is detached head?
+A. Git HEAD always points to latest commit of checked-out branch. So if you go into any older commit then it will show you that you 	are not in the latest commit of the current branch.
+
+Q. How to undo changes?
+A. There are 4 ways to undo changes:
+	1. Checkout (should not be used to delete master branch)
+	2. Revert (can be used for public commit as reverted commit will still be in history)
+	3. Reset  (should be used for local commits which is not yet pushed)
+	4. Amend Commit (Modify last commit)
+	5. Clean (to delete untracked files)
+	--Checkout--
+	Suppose you have commit history like: A, B, C, D and you have to remove C commit(D included) then checkout B commit and do little changes and commit and save this new commit in a new branch by "git checkout -b new_branch". Now you have new branch and you can delete old branch which has C and D.
+
+	--Revert--
+	Suppose you have commit history like: A, B, C, D and you have to remove D commit(HEAD).
+	If we execute "git revert HEAD", Git will create a new commit with the inverse of the last commit(HEAD).
+	So new history will be: A, B, C, D, Revert "D"(similar to C).
+
+	--RESET--
+	Suppose you have commit history like: A, B, C, D and you have to remove C commit.
+	If we invoke "git reset --hard C" the commit history is reset to that specified commit.
+	Now new history will be: A, B, C.
+	It will permanently delete commit. So use with CAUTION.
+
+	--Amend Commit--
+	"git commit --amend"
+	This option will modify the last commit. Instead of creating a new commit, staged changes will be added to the previous commit. This command will open up the system's configured text editor and prompt to change the previously specified commit message.
+
+	--Clean--
+	It will delete untracked files only.

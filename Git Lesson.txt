@@ -21,3 +21,14 @@ On the other hand, sometimes after working for an hour you’ll have run into mo
 
 Judgment Call
 Choosing when to commit is a judgment call, and it's not always cut-and-dried. When choosing whether to commit, just keep in mind that each commit should have one clear, logical purpose, and you should never do too much work without committing.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+--Merge conflict (Newline characters between Windows and Unix systems)--
+
+Context: Whenever we hit the "Enter" key on the keyboard, we are actually telling the computer to insert an invisible character into our text file to indicate to the computer that there should be a new line. Unix systems adds one character called the "line feed" character or LF or \n while Windows systems adds two characters, "carriage return" and "line feed" or CRLF or \r\n.
+
+Caroline's files have LF because her files were edited on Mac OSX, which uses LF. If a Windows user were to edit Caroline's files, the Windows text editor might convert all LF to CRLF to make editing files possible. When the Windows user merges her file with Caroline's files, a merge conflict will result due to the different LF and CRLF characters.
+
+To fix this, users should set either of global autocrlf attribute : 
+					git config --global core.autocrlf input			# Configure Git on OS X or Linux to properly handle line endings
+					git config --global core.autocrlf true			# Configure Git on Windows to properly handle line endings

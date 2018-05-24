@@ -6,7 +6,13 @@ git clone <repository URL on Github>	# it will create a local repository(clone) 
 										(CAUTION: move to a new specific directory where you want the new ropository before cloning otherwise if you are already in a different repository's working directory then cloning will download new repository folder in the same current working directory)
 
 git log                   	   		# it gives list of all recent commits with commit ID, date, author and commit message
+git log -n <limit> 					# Limit the number of commits by <limit> (limit number)
+git log --oneline 					# only one line will be showm for each commit
+git log <fileName> 					# Only display commits that include the specified file. 
+git log <branch> 					# display commit histoty of specified branch
 git log --stat                 		# it gives same log result with statistics like file names where change happened
+git log <since>..<until>			# Show only commits that occur between <since> and <until>. Both arguments can be either a 											commit ID, a branch name or HEAD. (Ex: git log master..origin/master)
+git log --graph --oneline 			# creates a commit graph of all branches
 
 git log --graph --oneline branch1 branch2  		#creates a commit graph of branch1 and branch2
 
@@ -21,15 +27,35 @@ git add -A 							# (add all) the files(tracked and untracked) in working direct
 									it is a combination of: git add -u AND git add .
 ---------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------Revert Back------------------------------------------------------
+git revert <commitID> 				# creates a new commit which is the inverse of specified commit
+git revert -n <commitID> 			# inverse of specified commit is staged but not commited (-n means --no-commit)
 
-git reset <filename>				# remove file from staging area before commiting
+git reset --soft HEAD~ 				# delete commits until specified commit(in this case parent of HEAD(second last commit)) from 										repository but files will still be there in working directory and staging area
+
+git reset --mixed HEAD~2 			# delete commits until specified commit(in this case 3rd last commit) from repository and 					OR 						staging area but files will still be there in working directory
+git reset HEAD~2 					# reset with no option is --mixed by default
+
+git reset --hard <commitID>			# delete commits until specified commit(specified commit won't be deleted) from repository, 										staging area and working directory (Use with Caution as this is irreversible)
+
+git reset <filename>				# remove specified file from last commit, staging area but not from working directory
+		OR 							(it will remove file from last unpushed commit)
+git reset HEAD <filename>
 		OR
-git rm --cached <filename>
+git rm --cached <filename> 			
 
-git reset --hard 					# discards any changes in files in working directory, staging area and repository(commit) (Use 										with Caution as this is irreversible)
+git checkout HEAD~2 <filename> 		# it will update the specified file's content as it was in 3rd last commit. (it works only at 										working directory level)
+---------------------------------------------------------------------------------------------------------------------------
 
-git reset --soft HEAD^ 				# undo last commit from repository (if head is at last commit) but files will still be there in 									working directory and staging area
-git reset --mixed 
+----------------------------------------------------------Clean------------------------------------------------------------
+Clean deletes only untracked files and folders(files mentioned in .gitignore are not deleted)
+
+git clean -n 						# it will only show files which will be deleted(but it will not delete) (-n means dry run)
+git clean -f 						# it will actually delete files (-f means --force)
+git clean -dn 						# it will only show directories which will be deleted (but it will not delete)
+git clean -df 						# it will actually delete directory (-d means directory)
+git clean -f <path> 				# it will actually delete specified file
+git clean -xf 						# files mentioned in .gitignore will also be deleted (USE WITH CAUTION AS IT CAN DELETE 											IMPORANT FILES) (don't use it if not sure about files listed in .gitignore)
+git clean -i 						# interactive cleaning operation
 ---------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------Differences------------------------------------------------------
@@ -46,13 +72,20 @@ git show <commitID> 				# it gives difference between specified commit and its p
 ----------------------------------------------------------Branch-----------------------------------------------------------
 
 git branch 							# shows the list of branches and highlight the current checked out(used) branch with a *(star)
+git branch -a 						# shows list of all remote and local branches
 git branch -r 						# shows local copy of remote branches
 git branch <branchName> 			# create a new branch with specified branchName (it will copy all commits till now) to new 											branch
+git branch -m <branchName> 			# rename current branch to specified branchName
 git checkout <branchName> 			# checkout (use) specified branchName (and if specified branch is not created before but local 										copy of remote/branch is there then it will checkout remote/branch as new local branch)
 
-git checkout -b <branchName> 		# creates and checkout specified new branchName. it's combination of: git branch <branchName>										AND git checkout <branchName>
+git checkout -b <branchName> 		# creates and checkout specified new branchName. it's combination of: git branch <branchName>										AND git checkout <branchName> (New branch's base will be from previously checked out branch)
 
-git branch -d <branchName> 			# delete specified branch
+git checkout -b <new-branch> <existing-branch>  # creates and checkout specified new-branch (New branch's base will be from 														specified existing-branch)
+
+git branch -d <branchName> 			# delete specified local branch
+git push -d origin <branchName> 	# delete remote version of specified branch
+			OR
+git push origin --delete <branchName>
 ---------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------Remote------------------------------------------------------------
@@ -84,7 +117,7 @@ git merge origin/master 			# merging local copy of remote master into local mast
 git commit -m "commit message"		# commit the added files in staging area to repository (-m for message with "commit message")
 git commit 							# if you have set core editor then that editor(sublime text) will open to write commit message
 git commit -a 						# (commit all) this is combination of: git add -u AND git commit    
-git commit --amend					#  Passing this option will modify the last commit. Instead of creating a new commit, staged 										changes will be added to the previous commit. This command will open up the system's configured 									text editor and prompt to change the previously specified commit message.
+git commit --amend					#  Passing this option will modify the last commit. Instead of creating a new commit, staged 										changes will be added to the previous commit. This command will open up the system's configured 									text editor and prompt to change the previously specified commit message.(CAUTION: DON'T AMEND 										PUSHED COMMIT AS OTHERS MAY HAVE PULLED IT AND DONE SOME CHANGES)
 ---------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------Pull-------------------------------------------------------------
@@ -95,7 +128,7 @@ git pull origin
 
 git pull --no-commit origin 		# it will only fetch files but not automatically commit
 git pull --rebase 					# it will rebase instead of merging after fetching files
-
+git pull --verbose 					# displays the content being downloaded and the merge details
 ---------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------Push-------------------------------------------------------------
@@ -105,6 +138,7 @@ git push -u <remote> <branch> 		# push commits to remote-branch (Eg: git push -u
 git push <remote> <branch> 			# will push on specified branch
 
 git push 							# will push all branches
+git push --force 					# commits which changes history of pushed commit can't be pushed normally. Use --force option 										to forcly push. (Ex: pushing amended commit of previously pushed commit)
 ---------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------Stash------------------------------------------------------------
@@ -123,3 +157,19 @@ git stash drop stash@{2} 			# drop the specified stash from stack
 
 git stash branch <newBranchName> stash@{1}  	#This checks out a new branch based on the commit that you created your stash from 													and then pops your stashed changes onto it
 ---------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------Tag--------------------------------------------------------------
+
+git tag 							# Gives the list of stored tags
+git tag -l *-rc* 					# -l option and a wildcard expression of -rc which returns a list of all tags marked with a -rc 									prefix
+
+git tag v1.4 						# creates a lightweight tag: v1.4
+git tag -a v1.4 -m "Version 1.4" 	# creates an anotated tag: v1.4 with tag message: Version 1.4
+git tag -a v1.2 <commitID> 			# creates an anotated tag: v1.2 for the specified commit with commitID
+git tag -a -f v1.2 <commitID> 		# creates tag FORCIBLY (in case any other commit already has v1.2 tag, this tag will now be 										updated for specified commitID)
+
+git push origin <tag> 				# Pushing tag to remote (use "--tags" instead of tag name if you need push multiple tags)
+git checkout <tag>					# checking out specified commit with specified tag
+git tag -d <tag> 					# deletes specified tag
+---------------------------------------------------------------------------------------------------------------------------
+
