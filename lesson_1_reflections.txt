@@ -98,3 +98,12 @@ A. Rebasing is similar to merging but the differences are:
 	Use Case:
 
 	Do this to make sure your commits apply cleanly on a remote branch — perhaps in a project to which you’re trying to contribute but that you don’t maintain. In this case, you’d do your work in a branch and then rebase your work onto origin/master when you were ready to submit your patches to the main project. That way, the maintainer doesn’t have to do any integration work — just a fast-forward or a clean apply.
+
+	Process:
+
+	If you have 2 branches: master and branch1
+	and you want to rebase branch1 changes ONTO master then:
+															git checkout branch1  
+															git rebase master
+															git checkout master
+															git merge branch1

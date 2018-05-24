@@ -105,12 +105,14 @@ git fetch <remote> <branch> 		# fetches only specified branch from remote
 git fetch --all 					# fetches all registered remotes and their branches
 ---------------------------------------------------------------------------------------------------------------------------
 
-----------------------------------------------------------Merge------------------------------------------------------------
+----------------------------------------------------------Merge/Rebase-----------------------------------------------------
 
-git merge <branch1> <branch2> 		# merging branch1, branch2 into current checked out branch. If branch1 is checked out while 										merging then branch1 will have new merge commit.
+git merge <branch1> <branch2> 		# merging branch1, branch2 INTO current checked out branch. If branch1 is checked out while 										merging then branch1 will have new merge commit.
 		OR
-git merge <branch2> 				# branch2 will merge in to current checked out branch from where merging started
-git merge origin/master 			# merging local copy of remote master into local master branch (if master is checked out)
+git merge <branch2> 				# branch2 will merge INTO current checked out branch from where merging started
+git merge origin/master 			# merging local copy of remote master INTO local master branch (if master is checked out)
+
+git rebase <branch> 				# it will rebase changes from current checked out branch ONTO specified branch
 ---------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------Commit-----------------------------------------------------------
