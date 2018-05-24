@@ -81,3 +81,20 @@ A. There are 4 ways to undo changes:
 
 	--Clean--
 	It will delete untracked files only.
+
+
+Q. What is rebasing?
+A. Rebasing is similar to merging but the differences are:
+							Merging 													Rebasing
+
+		* It happens into the specified branch 								* It happens onto specified branch
+			Ex: git merge branch1 												Ex: git rebase master
+			will merge branch1 into checked out branch 							will rebase checked out branch onto master branch
+
+		* It will not change commit history 								* It will change commit history
+		
+
+
+	Use Case:
+
+	Do this to make sure your commits apply cleanly on a remote branch — perhaps in a project to which you’re trying to contribute but that you don’t maintain. In this case, you’d do your work in a branch and then rebase your work onto origin/master when you were ready to submit your patches to the main project. That way, the maintainer doesn’t have to do any integration work — just a fast-forward or a clean apply.
