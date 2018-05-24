@@ -32,3 +32,5 @@ Caroline's files have LF because her files were edited on Mac OSX, which uses LF
 To fix this, users should set either of global autocrlf attribute : 
 					git config --global core.autocrlf input			# Configure Git on OS X or Linux to properly handle line endings
 					git config --global core.autocrlf true			# Configure Git on Windows to properly handle line endings
+
+
