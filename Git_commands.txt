@@ -1,9 +1,16 @@
-----------------------------------------------------------General----------------------------------------------------------
+----------------------------------------------------------Create Repo------------------------------------------------------
 
 git init							# it creates the .git directory (repository) inside your working project directory (existing 										files are not be added automatically in repository)
 
 git clone <repository URL on Github>	# it will create a local repository(clone) of the remote repository
 										(CAUTION: move to a new specific directory where you want the new ropository before cloning otherwise if you are already in a different repository's working directory then cloning will download new repository folder in the same current working directory)
+---------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------Log/Status------------------------------------------------------
+
+git status							# it gives the status of your repository (untracked files: files present in working directory 										but not added to staging area; Changes to be commited: files added in staging area but not yet 										commited; Lists all new or modified files to be commited)
+
+git show <commitID> 				# show changes made in specified commit
 
 git log                   	   		# it gives list of all recent commits with commit ID, date, author and commit message
 git log -n <limit> 					# Limit the number of commits by <limit> (limit number)
@@ -16,8 +23,8 @@ git log <since>..<until>			# Show only commits that occur between <since> and <u
 git log --graph --oneline --decorate			# creates a commit graph of all branches (--decorate will give branch name with 													commits and --oneline will give only one line for each commit)
 
 git log --graph --oneline branch1 branch2  		#creates a commit graph of branch1 and branch2
+---------------------------------------------------------------------------------------------------------------------------
 
-git status							# it gives the status of your repository (untracked files: files present in working directory 										but not added to staging area; Changes to be commited: files added in staging area but not yet 										commited; Lists all new or modified files to be commited)
 ----------------------------------------------------------Add--------------------------------------------------------------
 
 git add <filename>					# add file to staging area (While commiting, every file in staging area will be commited to 										repository)
@@ -27,6 +34,7 @@ git add . 							# (add new) Untracked files to staging area
 git add -A 							# (add all) the files(tracked and untracked) in working directory to staging area
 									it is a combination of: git add -u AND git add .
 ---------------------------------------------------------------------------------------------------------------------------
+
 ----------------------------------------------------------Revert Back------------------------------------------------------
 git revert <commitID> 				# creates a new commit which is the inverse of specified commit
 git revert -n <commitID> 			# inverse of specified commit is staged but not commited (-n means --no-commit)
@@ -38,14 +46,16 @@ git reset HEAD~2 					# reset with no option is --mixed by default
 
 git reset --hard <commitID>			# delete commits until specified commit(specified commit won't be deleted) from repository, 										staging area and working directory (Use with Caution as this is irreversible)
 
-git reset <filename>				# changes made in specified file(tracked) will be unstaged
+git reset <filename>				# changes made in specified file(tracked) will be unstaged but will be in working directory
 		OR 							
-git reset HEAD <filename> 			# changes made in specified file(tracked) will be unstaged
+git reset HEAD <filename> 			# changes made in specified file(tracked) will be unstaged but will be in working directory
 		
 		
 git rm --cached <filename> 			# delete(untrack) specified file(tracked) in next commit (--cached will keep file in working 										directory)
 
 git checkout HEAD~2 <filename> 		# it will update the specified file's content as it was in 3rd last commit. (it works only at 										working directory level)
+
+git mv <file-original> <file-renamed> # Changes the file name and prepares it for commit
 ---------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------Clean------------------------------------------------------------
