@@ -12,7 +12,8 @@ git log <fileName> 					# Only display commits that include the specified file.
 git log <branch> 					# display commit histoty of specified branch
 git log --stat                 		# it gives same log result with statistics like file names where change happened
 git log <since>..<until>			# Show only commits that occur between <since> and <until>. Both arguments can be either a 											commit ID, a branch name or HEAD. (Ex: git log master..origin/master)
-git log --graph --oneline 			# creates a commit graph of all branches
+
+git log --graph --oneline --decorate			# creates a commit graph of all branches (--decorate will give branch name with 													commits and --oneline will give only one line for each commit)
 
 git log --graph --oneline branch1 branch2  		#creates a commit graph of branch1 and branch2
 
