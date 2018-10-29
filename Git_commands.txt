@@ -1,6 +1,10 @@
 ----------------------------------------------------------Create Repo------------------------------------------------------
 
-git init							# it creates the .git directory (repository) inside your working project directory (existing 										files are not be added automatically in repository)
+git init							# it creates the .git directory (repository) inside your working project directory (existing 										files will not be added automatically in repository) (If you are already in working directory)
+
+git init <directoryName> 			# If provided directory name does not exist then it will create new directory with specified 										name and create empty repo(.git folder) inside new directory. 
+									If given directory already exists then it will use that directory.
+									If you are already inside that directory then again it will create new directory.
 
 git clone <repository URL on Github>	# it will create a local repository(clone) of the remote repository
 										(CAUTION: move to a new specific directory where you want the new ropository before cloning otherwise if you are already in a different repository's working directory then cloning will download new repository folder in the same current working directory)
